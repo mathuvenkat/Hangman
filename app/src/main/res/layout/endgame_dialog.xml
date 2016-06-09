@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:id="@+id/RelativeLayout01"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView android:layout_height="wrap_content"
+        android:layout_width="wrap_content" android:text="You Win!"
+        android:id="@+id/endmessage" android:textSize="8pt"
+        android:layout_centerHorizontal="true"></TextView>
+    <TableRow android:layout_height="wrap_content"
+        android:id="@+id/TableRow01"
+        android:layout_below="@+id/endmessage"
+        android:layout_width="wrap_content"
+        android:layout_centerHorizontal="true">
+        <Button android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/endgame1"
+            android:text="Try Again"
+            android:layout_below="@+id/endmessage"></Button>
+        <Button android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/Button01"
+            android:layout_width="wrap_content"
+            android:text="Back To Main"
+            android:id="@+id/endgame2"
+            android:layout_below="@+id/endmessage"></Button>
+    </TableRow>
+</RelativeLayout>
