@@ -24,4 +24,14 @@
             android:id="@+id/endgame2"
             android:layout_below="@+id/endmessage"></Button>
     </TableRow>
+
+    <ImageView android:layout_below="@+id/TableRow01"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:id="@+id/congrats"
+        android:src="@drawable/congrats"
+        android:layout_marginLeft="1dip"
+        android:layout_marginTop="5dip"></ImageView>
+
 </RelativeLayout>

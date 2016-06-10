@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:id="@+id/hangman_img"
-        android:src="@drawable/hang_1"
+        android:src="@drawable/hang_0"
         android:layout_marginLeft="10dip"
         android:layout_marginTop="5dip"></ImageView>
 

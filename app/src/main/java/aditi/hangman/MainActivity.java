@@ -1,5 +1,6 @@
 package aditi.hangman;
 
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -22,6 +23,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Button newGameButton = (Button) this.findViewById(R.id.newGame_button);
         newGameButton.setOnClickListener(this);
 
+        Button continueButton = (Button) this.findViewById(R.id.continue_button);
+        continueButton.setOnClickListener(this);
+
+        Button exitButton = (Button) this.findViewById(R.id.exit_button);
+        exitButton.setOnClickListener(this);
+
+
     }
 
     public void onClick(View v) {
@@ -30,6 +38,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.newGame_button:
                 // open a new game dialog box
                 openNewGameDialog();
+                break;
+
+            case R.id.continue_button:
+                startGame(Game.CATEGORY_CONTINUE);
+                break;
+
+            case R.id.exit_button:
+                SharedPreferences perfs = getApplicationContext().getSharedPreferences("Game" , MODE_PRIVATE);
+                perfs.edit().clear().commit();
+                Music.stop(this);
+                finish();
                 break;
 
         }
@@ -57,5 +76,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Intent intent = new Intent(MainActivity.this, Game.class);
         intent.putExtra(Game.KEY_CATEGORY, i);
         startActivity(intent);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d(TAG, "on resume");
+
+    }
+    /*
+     * (non-Javadoc)
+     *
+     * @see android.app.Activity#onPause()
+     */
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.d(TAG, "on Pause");
+
     }
 }
