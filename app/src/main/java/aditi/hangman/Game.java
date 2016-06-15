@@ -687,6 +687,12 @@ public class Game extends Activity implements View.OnClickListener {
 
     @Override
     public void onStop() {
+
+        Log.d(TAG, "onStop");
+        super.onPause();
+        Log.d(TAG, "stopping music");
+        Music.stop(this);
+
         super.onStop();
 
         // ATTENTION: This was auto-generated to implement the App Indexing API.
