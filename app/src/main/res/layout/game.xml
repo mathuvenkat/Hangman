@@ -1,81 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="fill_parent"
-    android:layout_width="fill_parent" android:background="#FFFBE9">
+    android:layout_width="fill_parent"
+    android:layout_marginTop="10dp"
+    android:orientation="vertical">
 
-    <!--hint button -->
-    <Button android:layout_height="wrap_content"
-        android:layout_marginLeft="10dip"
-        android:layout_width="65dip" android:text="HINT"
-        android:id="@+id/hint_button"></Button>
-
-    <!--mystery word -->
-    <TextView
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dip"
-        android:text="_ _ _ _ _"
-        android:textSize="10pt"
-        android:id="@+id/mysteryword"
-        android:textColor="#000000"
-        android:layout_below="@+id/hint_button"
-        android:layout_centerHorizontal="false"></TextView>
-
-    <ImageView
+        android:orientation="horizontal">
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:id="@+id/hangman_img"
-        android:src="@drawable/hang_0"
-        android:layout_marginLeft="10dip"
-        android:layout_marginTop="5dip"></ImageView>
+        android:orientation="vertical">
 
-    <!--dummy space  -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:textSize="10pt"
-        android:id="@+id/dummy"
-        android:textColor="#000000"
-        android:layout_below="@+id/mysteryword"></TextView>
+        <!--hint button -->
+        <Button android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:textSize="10pt"
+            android:text="HINT"
+            android:id="@+id/hint_button"
+            android:layout_width="wrap_content"></Button>
 
-    <!--hint message -->
+        <!--mystery word -->
+        <TextView
+            android:layout_marginTop="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="35dp"
+            android:text="_ _ _ _ _"
+            android:textSize="12pt"
+            android:id="@+id/mysteryword"
+            android:textColor="#000000"
+            android:layout_below="@+id/hint_button"></TextView>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:textSize="10pt"
-        android:id="@+id/clue"
-        android:textColor="#646698"
-        android:typeface="serif"
-        android:layout_below="@+id/dummy"
-        android:layout_centerHorizontal="true"
-        android:textStyle="italic"
-        android:backgroundTint="#f6ecec"></TextView>
 
-    <TextView android:layout_below="@+id/clue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:textSize="10pt"
-        android:id="@+id/dummy2"></TextView>
+        <!--hint message -->
+        <TextView
+            android:layout_marginTop="50dp"
+            android:layout_width="170dp"
+            android:layout_height="wrap_content"
+            android:text="t"
+            android:layout_marginLeft="35dp"
+            android:textSize="10pt"
+            android:id="@+id/clue"
+            android:textColor="#646698"
+            android:typeface="serif"
+            android:textStyle="italic"
+            android:backgroundTint="#f6ecec"></TextView>
 
-    <TextView android:layout_below="@+id/dummy2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:textSize="10pt"
-        android:id="@+id/dummy3"></TextView>
-
-    <TextView android:layout_below="@+id/dummy3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:textSize="10pt"
-        android:id="@+id/dummy4"></TextView>
+    </LinearLayout>
+        <RelativeLayout android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        <ImageView
+            android:layout_width="125dp"
+            android:layout_height="200dp"
+            android:layout_alignParentRight="true"
+            android:id="@+id/hangman_img"
+            android:src="@drawable/hang_0">
+        </ImageView>
+        </RelativeLayout>
+    </LinearLayout>
 
 
     <TableRow android:layout_below="@+id/dummy4"
@@ -87,33 +73,33 @@
         <Button android:layout_height="wrap_content"
             android:layout_below="@+id/mysteryword"
             android:layout_centerHorizontal="true"
-            android:text="A"
-            android:layout_width="65dip"
+            android:text="a"
+            android:layout_width="65dp"
             android:id="@+id/a_button"></Button>
         <Button android:layout_height="wrap_content"
             android:layout_below="@+id/mysteryword"
             android:layout_centerHorizontal="true"
-            android:text="B" android:layout_width="65dip"
+            android:text="b" android:layout_width="65dp"
             android:id="@+id/b_button"></Button>
         <Button android:layout_height="wrap_content"
             android:layout_below="@+id/mysteryword"
             android:layout_centerHorizontal="true"
-            android:text="C" android:layout_width="65dip"
+            android:text="c" android:layout_width="65dp"
             android:id="@+id/c_button"></Button>
         <Button android:layout_height="wrap_content"
             android:layout_below="@+id/mysteryword"
             android:layout_centerHorizontal="true"
-            android:text="D" android:layout_width="65dip"
+            android:text="d" android:layout_width="65dp"
             android:id="@+id/d_button"></Button>
         <Button android:layout_height="wrap_content"
             android:layout_below="@+id/mysteryword"
             android:layout_centerHorizontal="true"
-            android:text="e" android:layout_width="65dip"
+            android:text="e" android:layout_width="65dp"
             android:id="@+id/e_button"></Button>
         <Button android:layout_height="wrap_content"
             android:layout_below="@+id/mysteryword"
             android:layout_centerHorizontal="true"
-            android:text="f" android:layout_width="65dip"
+            android:text="f" android:layout_width="65dp"
             android:id="@+id/f_button"></Button>
     </TableRow>
     <TableRow android:layout_below="@+id/TableRow01"
@@ -122,24 +108,24 @@
         android:layout_width="wrap_content"
         android:layout_centerHorizontal="true">
         <Button android:layout_height="wrap_content"
-            android:text="g" android:layout_width="65dip"
+            android:text="g" android:layout_width="65dp"
             android:id="@+id/g_button"></Button>
         <Button android:layout_height="wrap_content"
             android:layout_below="@+id/Button01"
             android:layout_centerHorizontal="true"
-            android:text="h" android:layout_width="65dip"
+            android:text="h" android:layout_width="65dp"
             android:id="@+id/h_button"></Button>
         <Button android:layout_height="wrap_content"
-            android:text="i" android:layout_width="65dip"
+            android:text="i" android:layout_width="65dp"
             android:id="@+id/i_button"></Button>
         <Button android:layout_height="wrap_content"
-            android:text="j" android:layout_width="65dip"
+            android:text="j" android:layout_width="65dp"
             android:id="@+id/j_button"></Button>
         <Button android:layout_height="wrap_content"
-            android:text="k" android:layout_width="65dip"
+            android:text="k" android:layout_width="65dp"
             android:id="@+id/k_button"></Button>
         <Button android:layout_height="wrap_content"
-            android:text="l" android:layout_width="65dip"
+            android:text="l" android:layout_width="65dp"
             android:id="@+id/l_button"></Button>
     </TableRow>
     <TableRow android:layout_below="@+id/TableRow02"
@@ -149,27 +135,27 @@
         android:layout_centerHorizontal="true">
         <Button android:layout_height="wrap_content"
 
-            android:text="m" android:layout_width="65dip"
+            android:text="m" android:layout_width="65dp"
             android:id="@+id/m_button"></Button>
         <Button android:layout_height="wrap_content"
 
-            android:text="n" android:layout_width="65dip"
+            android:text="n" android:layout_width="65dp"
             android:id="@+id/n_button"></Button>
         <Button android:layout_height="wrap_content"
 
-            android:text="o" android:layout_width="65dip"
+            android:text="o" android:layout_width="65dp"
             android:id="@+id/o_button"></Button>
         <Button android:layout_height="wrap_content"
 
-            android:text="p" android:layout_width="65dip"
+            android:text="p" android:layout_width="65dp"
             android:id="@+id/p_button"></Button>
         <Button android:layout_height="wrap_content"
 
-            android:text="q" android:layout_width="65dip"
+            android:text="q" android:layout_width="65dp"
             android:id="@+id/q_button"></Button>
         <Button android:layout_height="wrap_content"
 
-            android:text="r" android:layout_width="65dip"
+            android:text="r" android:layout_width="65dp"
             android:id="@+id/r_button"></Button>
     </TableRow>
     <TableRow android:layout_below="@+id/TableRow03"
@@ -179,27 +165,27 @@
         android:layout_centerHorizontal="true">
         <Button android:layout_height="wrap_content"
 
-            android:text="s" android:layout_width="65dip"
+            android:text="s" android:layout_width="65dp"
             android:id="@+id/s_button"></Button>
         <Button android:layout_height="wrap_content"
 
-            android:text="t" android:layout_width="65dip"
+            android:text="t" android:layout_width="65dp"
             android:id="@+id/t_button"></Button>
         <Button android:layout_height="wrap_content"
 
-            android:text="u" android:layout_width="65dip"
+            android:text="u" android:layout_width="65dp"
             android:id="@+id/u_button"></Button>
         <Button android:layout_height="wrap_content"
 
-            android:text="v" android:layout_width="65dip"
+            android:text="v" android:layout_width="65dp"
             android:id="@+id/v_button"></Button>
         <Button android:layout_height="wrap_content"
 
-            android:text="w" android:layout_width="65dip"
+            android:text="w" android:layout_width="65dp"
             android:id="@+id/w_button"></Button>
         <Button android:layout_height="wrap_content"
 
-            android:text="x" android:layout_width="65dip"
+            android:text="x" android:layout_width="65dp"
             android:id="@+id/x_button"></Button>
     </TableRow>
     <TableRow android:layout_below="@+id/TableRow04"
@@ -209,21 +195,25 @@
         android:layout_centerHorizontal="true">
         <Button android:layout_height="wrap_content"
 
-            android:text="y" android:layout_width="65dip"
+            android:text="y" android:layout_width="65dp"
             android:id="@+id/y_button"></Button>
         <Button android:layout_height="wrap_content"
 
-            android:text="z" android:layout_width="65dip"
+            android:text="z" android:layout_width="65dp"
             android:id="@+id/z_button"></Button>
 
     </TableRow>
 
-    <TextView android:layout_below="@+id/TableRow05"
-        android:id="@+id/wrongletters" android:textSize="8pt"
-        android:layout_marginLeft="50dip"
-        android:layout_width="60dip" android:text="A B C"
-        android:layout_height="60dip" android:layout_marginTop="20dip"
-        android:textColor="#BD4959"></TextView>
+    <TextView
+        android:id="@+id/wrongletters"
+        android:layout_marginLeft="60dp"
+        android:textSize="10pt"
+        android:layout_below="@+id/TableRow05"
+        android:text="A B C"
+        android:textColor="#BD4959"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"></TextView>
 
 
-</RelativeLayout>
+
+</LinearLayout>

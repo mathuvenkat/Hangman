@@ -13,15 +13,21 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.content.Context;
 
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
 
+import java.io.InputStream;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Properties;
 import java.util.Random;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+import java.util.HashSet;
 
 
 /**
@@ -93,12 +99,18 @@ public class Game extends Activity implements View.OnClickListener {
     Random gen = new Random();
 
 
+    Properties prop_0 = new Properties();
+    Properties prop_1 = new Properties();
+    Properties prop_2 = new Properties();
+
+
     /**
      * Called when the activity is first created.
      */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         Log.d(TAG, "oncreate");
+        initProperties();
 
         score = getPreferences(MODE_PRIVATE).getInt(
                 PREF_score, 0);
@@ -190,6 +202,31 @@ public class Game extends Activity implements View.OnClickListener {
     private void initWrongGuesses() {
         numWrongGuesses = 0;
         wrongletters.setText("");
+    }
+
+
+    private void initProperties() {
+
+        Map<String, Properties> map = new HashMap<>();
+        map.put("config_0.properties", prop_0);
+        map.put("config_1.properties", prop_1);
+        map.put("config_2.properties", prop_2);
+
+
+        InputStream is;
+        for (String file : map.keySet()) {
+            is = getClass().getClassLoader().getResourceAsStream(file);
+
+            try {
+                if (is != null) {
+                    map.get(file).load(is);
+                }
+            } catch (Exception e) {
+                Log.e(TAG, "Unable to load properties...");
+
+            }
+        }
+
     }
 
     private void setClickListeners() {
@@ -521,83 +558,42 @@ public class Game extends Activity implements View.OnClickListener {
      * @return temp
      */
     private String getWord(int cat) {
-        Log.i(TAG, "get words for category" + cat);
         String temp;
 
-        Map<Integer, String[]> map = new HashMap<Integer, String[]>();
+        Set<Object> keys = new HashSet<>();
+        switch (cat) {
+            case 0:
+                keys = prop_0.keySet();
+                break;
+            case 1:
+                keys = prop_1.keySet();
+                break;
+            case 2:
+                keys = prop_2.keySet();
+                break;
 
-        map.put(CATEGORY_ADJECTIVES, new String[]{"beautiful", "charming", "active", "lazy", "huge",
-                "happy", "angry", "embarrassed", "scary", "loud", "hot", "heavy", "empty", "humongous",
-                "wrong", "thankful", "nice", "purple", "gentle"});
-        map.put(CATEGORY_VERBS, new String[]{"swimming", "exercise", "climbing", "dance", "paint",
-                "breathe", "appreciate", "answer", "apologize", "compare", "concentrate", "excite", "guess"});
-        map.put(CATEGORY_COUNTRIES, new String[]{"india", "russia", "china", "japan", "france", "egypt", "norway",
-                "thailand"});
-
-
-        String[] res = map.get(cat);
-        temp = res[gen.nextInt(res.length)];
-
-
+        }
+        List<Object> list = new ArrayList<Object>(keys);
+        temp = (String) list.get(gen.nextInt(keys.size()));
         return temp;
     }
 
     private void useHint() {
-        Map<String, String> hintMap = new HashMap<String, String>();
-        hintMap.put("beautiful", "used to describe a person");
-        hintMap.put("charming", "used to describe a person");
-        hintMap.put("active", "opposite of how a snail is");
-        hintMap.put("lazy", "another word for not active");
-        hintMap.put("huge", "another word for big");
 
-        hintMap.put("happy", "describes positive emotion");
-        hintMap.put("angry", "describes negative emotion");
-        hintMap.put("embarrassed", "describes negative emotion");
-        hintMap.put("scary", "describes negative emotion");
-        hintMap.put("loud", "describes sound");
-        hintMap.put("hot", "describes touch");
-        hintMap.put("heavy", "describes quantity");
-        hintMap.put("empty", "describes quantity");
-        hintMap.put("humongous", "describes quantity - means large");
+        Properties temp = new Properties();
+        switch (cat) {
+            case 0:
+                temp = prop_0;
+                break;
+            case 1:
+                temp = prop_1;
+                break;
+            case 2:
+                temp = prop_2;
+                break;
 
-        hintMap.put("purple", "describes a color");
-
-        hintMap.put("wrong", "describes a conditional adjective");
-        hintMap.put("thankful", "describes positive emotion");
-        hintMap.put("nice", "describes positive personality");
-        hintMap.put("gentle", "describes positive personality");
-
-        hintMap.put("swimming", "an activity you enjoy");
-        hintMap.put("exercise", "healthy for the body");
-        hintMap.put("climbing", "what do we do on stairs");
-        hintMap.put("dance", "you do this while watching go noodles");
-        hintMap.put("paint", "we both do this together sometimes");
-
-        hintMap.put("breathe", "an involuntary action of the body");
-        hintMap.put("appreciate", "what you do when someone does something good");
-        hintMap.put("answer", "what you do when asked a question");
-        hintMap.put("apologize", "feeling sorry");
-        hintMap.put("compare", "we both do this together sometimes");
-        hintMap.put("concentrate", "another word for focus");
-        hintMap.put("excite", "enthusiastic or eager");
-        hintMap.put("guess", "what you are doing right now!!!");
-
-
-        hintMap.put("india", "biggest democracy in the world");
-        hintMap.put("russia", "largest country in the world");
-        hintMap.put("china", "most populated country");
-        hintMap.put("japan", "its in asia - land of rising sun");
-        hintMap.put("france", "eifel tower is here");
-        hintMap.put("egypt", "land of pyramids - Africa");
-        hintMap.put("norway", "land of midnight sun - Europe");
-        hintMap.put("thailand", "land of white elephants - Asia");
-        hintMap.put("mexico", "North America - south of USA");
-        hintMap.put("canada", "Largest country in North America");
-
-        Log.i(TAG, "hint for word " + mysteryWord);
-        Log.i(TAG, "res " + hintMap.get(mysteryWord));
-        clue.setText(hintMap.get(mysteryWord));
-
+        }
+        clue.setText((String) temp.get(mysteryWord));
     }
 
     @Override
