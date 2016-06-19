@@ -109,7 +109,7 @@ public class Game extends Activity implements View.OnClickListener {
      */
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        Log.d(TAG, "oncreate");
+        //Log.d(TAG, "oncreate");
         initProperties();
 
         score = getPreferences(MODE_PRIVATE).getInt(
@@ -132,7 +132,7 @@ public class Game extends Activity implements View.OnClickListener {
         // set OnClick Listeners for each button in the view
         setClickListeners();
 
-        Log.d(TAG, "invoking load game if saved");
+        //Log.d(TAG, "invoking load game if saved");
         loadGameIfSaved();
 
         // ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -145,16 +145,16 @@ public class Game extends Activity implements View.OnClickListener {
 
 
         super.onResume();
-        Log.d(TAG, "game onResume");
+        //Log.d(TAG, "game onResume");
 
     }
 
     @Override
     protected void onPause() {
 
-        Log.d(TAG, "onPause");
+        //Log.d(TAG, "onPause");
         super.onPause();
-        Log.d(TAG, "stopping music");
+        //Log.d(TAG, "stopping music");
         Music.stop(this);
 
         // Save the current mystery word
@@ -222,7 +222,7 @@ public class Game extends Activity implements View.OnClickListener {
                     map.get(file).load(is);
                 }
             } catch (Exception e) {
-                Log.e(TAG, "Unable to load properties...");
+                //Log.e(TAG, "Unable to load properties...");
 
             }
         }
@@ -380,7 +380,7 @@ public class Game extends Activity implements View.OnClickListener {
      * Start a new game with the given category
      */
     private void startGame(int i) {
-        Log.d(TAG, "game clicked on " + i);
+        //Log.d(TAG, "game clicked on " + i);
         Intent intent = new Intent(Game.this, Game.class);
         intent.putExtra(Game.KEY_CATEGORY, i);
         startActivity(intent);
@@ -467,7 +467,7 @@ public class Game extends Activity implements View.OnClickListener {
             return;
         }
 
-        mysteryWord = getWord(cat);
+        mysteryWord = getWord(cat).toLowerCase();
     }
 
     /**
@@ -613,7 +613,7 @@ public class Game extends Activity implements View.OnClickListener {
                 dialog = new Dialog(Game.this);
 
                 dialog.setContentView(R.layout.endgame_dialog);
-                dialog.setTitle("You have won! Game Over");
+                dialog.setTitle("You have won!");
                 endmessage = (TextView)
                         dialog.findViewById(R.id.endmessage);
                 endgame1 = (Button)
@@ -688,9 +688,9 @@ public class Game extends Activity implements View.OnClickListener {
     @Override
     public void onStop() {
 
-        Log.d(TAG, "onStop");
+        //Log.d(TAG, "onStop");
         super.onPause();
-        Log.d(TAG, "stopping music");
+        //Log.d(TAG, "stopping music");
         Music.stop(this);
 
         super.onStop();

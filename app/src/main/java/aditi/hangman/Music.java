@@ -14,7 +14,7 @@ public class Music {
 
     public static void play(Context context, int resource) {
         stop(context);
-        Log.v(TAG , "playing music");
+        //Log.v(TAG , "playing music");
         mp = MediaPlayer.create(context, resource);
         mp.start();
     }
@@ -25,7 +25,7 @@ public class Music {
      */
     public static void stop(Context context) {
         if (mp != null) {
-            Log.v(TAG , "stopping music");
+            //Log.v(TAG , "stopping music");
             mp.stop();
             mp.release();
             mp = null;

@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     /** Start a new game with the given category */
     private void startGame(int i) {
-        Log.d(TAG, "clicked on " + i);
+        //Log.d(TAG, "clicked on " + i);
         Intent intent = new Intent(MainActivity.this, Game.class);
         intent.putExtra(Game.KEY_CATEGORY, i);
         startActivity(intent);
@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onResume() {
         super.onResume();
-        Log.d(TAG, "on resume");
+        //Log.d(TAG, "on resume");
 
     }
     /*
@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onPause() {
         super.onPause();
-        Log.d(TAG, "on Pause");
+        //Log.d(TAG, "on Pause");
 
     }
 }

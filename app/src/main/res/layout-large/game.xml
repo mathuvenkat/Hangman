@@ -4,21 +4,14 @@
     android:layout_height="fill_parent"
     android:layout_width="fill_parent"
     android:layout_marginTop="10dp"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:gravity="center">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
 
         <!--hint button -->
         <Button android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:textSize="10pt"
+            android:layout_gravity="center_horizontal"
+            android:textSize="12pt"
             android:text="HINT"
             android:id="@+id/hint_button"
             android:layout_width="wrap_content"></Button>
@@ -28,7 +21,7 @@
             android:layout_marginTop="30dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="35dp"
+            android:layout_gravity="center"
             android:text="_ _ _ _ _"
             android:textSize="12pt"
             android:id="@+id/mysteryword"
@@ -38,68 +31,67 @@
 
         <!--hint message -->
         <TextView
-            android:layout_marginTop="50dp"
-            android:layout_width="170dp"
+            android:layout_marginTop="60dp"
+            android:layout_width="500dp"
             android:layout_height="wrap_content"
             android:text=""
-            android:layout_marginLeft="35dp"
-            android:textSize="10pt"
+            android:layout_gravity="center"
+            android:textSize="12pt"
             android:id="@+id/clue"
             android:textColor="#646698"
             android:typeface="serif"
             android:textStyle="italic"
             android:backgroundTint="#f6ecec"></TextView>
 
-    </LinearLayout>
-        <RelativeLayout android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+
         <ImageView
+            android:layout_marginTop="60dp"
             android:layout_width="125dp"
             android:layout_height="200dp"
+            android:layout_gravity="center"
             android:layout_alignParentRight="true"
             android:id="@+id/hangman_img"
             android:src="@drawable/hang_0">
         </ImageView>
-        </RelativeLayout>
-    </LinearLayout>
 
 
-    <TableRow android:layout_below="@+id/dummy4"
+
+    <TableRow
         android:layout_height="wrap_content"
         android:id="@+id/TableRow01"
         android:layout_width="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dip">
+        android:layout_marginTop="60dp">
         <Button android:layout_height="wrap_content"
             android:layout_below="@+id/mysteryword"
             android:layout_centerHorizontal="true"
             android:text="a"
-            android:layout_width="65dp"
+            android:layout_width="75dp"
             android:id="@+id/a_button"></Button>
         <Button android:layout_height="wrap_content"
             android:layout_below="@+id/mysteryword"
             android:layout_centerHorizontal="true"
-            android:text="b" android:layout_width="65dp"
+            android:text="b" android:layout_width="75dp"
             android:id="@+id/b_button"></Button>
         <Button android:layout_height="wrap_content"
             android:layout_below="@+id/mysteryword"
             android:layout_centerHorizontal="true"
-            android:text="c" android:layout_width="65dp"
+            android:text="c" android:layout_width="75dp"
             android:id="@+id/c_button"></Button>
         <Button android:layout_height="wrap_content"
             android:layout_below="@+id/mysteryword"
             android:layout_centerHorizontal="true"
-            android:text="d" android:layout_width="65dp"
+            android:text="d" android:layout_width="75dp"
             android:id="@+id/d_button"></Button>
         <Button android:layout_height="wrap_content"
             android:layout_below="@+id/mysteryword"
             android:layout_centerHorizontal="true"
-            android:text="e" android:layout_width="65dp"
+            android:text="e" android:layout_width="75dp"
             android:id="@+id/e_button"></Button>
         <Button android:layout_height="wrap_content"
             android:layout_below="@+id/mysteryword"
             android:layout_centerHorizontal="true"
-            android:text="f" android:layout_width="65dp"
+            android:text="f" android:layout_width="75dp"
             android:id="@+id/f_button"></Button>
     </TableRow>
     <TableRow android:layout_below="@+id/TableRow01"
@@ -108,24 +100,24 @@
         android:layout_width="wrap_content"
         android:layout_centerHorizontal="true">
         <Button android:layout_height="wrap_content"
-            android:text="g" android:layout_width="65dp"
+            android:text="g" android:layout_width="75dp"
             android:id="@+id/g_button"></Button>
         <Button android:layout_height="wrap_content"
             android:layout_below="@+id/Button01"
             android:layout_centerHorizontal="true"
-            android:text="h" android:layout_width="65dp"
+            android:text="h" android:layout_width="75dp"
             android:id="@+id/h_button"></Button>
         <Button android:layout_height="wrap_content"
-            android:text="i" android:layout_width="65dp"
+            android:text="i" android:layout_width="75dp"
             android:id="@+id/i_button"></Button>
         <Button android:layout_height="wrap_content"
-            android:text="j" android:layout_width="65dp"
+            android:text="j" android:layout_width="75dp"
             android:id="@+id/j_button"></Button>
         <Button android:layout_height="wrap_content"
-            android:text="k" android:layout_width="65dp"
+            android:text="k" android:layout_width="75dp"
             android:id="@+id/k_button"></Button>
         <Button android:layout_height="wrap_content"
-            android:text="l" android:layout_width="65dp"
+            android:text="l" android:layout_width="75dp"
             android:id="@+id/l_button"></Button>
     </TableRow>
     <TableRow android:layout_below="@+id/TableRow02"
@@ -135,27 +127,27 @@
         android:layout_centerHorizontal="true">
         <Button android:layout_height="wrap_content"
 
-            android:text="m" android:layout_width="65dp"
+            android:text="m" android:layout_width="75dp"
             android:id="@+id/m_button"></Button>
         <Button android:layout_height="wrap_content"
 
-            android:text="n" android:layout_width="65dp"
+            android:text="n" android:layout_width="75dp"
             android:id="@+id/n_button"></Button>
         <Button android:layout_height="wrap_content"
 
-            android:text="o" android:layout_width="65dp"
+            android:text="o" android:layout_width="75dp"
             android:id="@+id/o_button"></Button>
         <Button android:layout_height="wrap_content"
 
-            android:text="p" android:layout_width="65dp"
+            android:text="p" android:layout_width="75dp"
             android:id="@+id/p_button"></Button>
         <Button android:layout_height="wrap_content"
 
-            android:text="q" android:layout_width="65dp"
+            android:text="q" android:layout_width="75dp"
             android:id="@+id/q_button"></Button>
         <Button android:layout_height="wrap_content"
 
-            android:text="r" android:layout_width="65dp"
+            android:text="r" android:layout_width="75dp"
             android:id="@+id/r_button"></Button>
     </TableRow>
     <TableRow android:layout_below="@+id/TableRow03"
@@ -165,27 +157,27 @@
         android:layout_centerHorizontal="true">
         <Button android:layout_height="wrap_content"
 
-            android:text="s" android:layout_width="65dp"
+            android:text="s" android:layout_width="75dp"
             android:id="@+id/s_button"></Button>
         <Button android:layout_height="wrap_content"
 
-            android:text="t" android:layout_width="65dp"
+            android:text="t" android:layout_width="75dp"
             android:id="@+id/t_button"></Button>
         <Button android:layout_height="wrap_content"
 
-            android:text="u" android:layout_width="65dp"
+            android:text="u" android:layout_width="75dp"
             android:id="@+id/u_button"></Button>
         <Button android:layout_height="wrap_content"
 
-            android:text="v" android:layout_width="65dp"
+            android:text="v" android:layout_width="75dp"
             android:id="@+id/v_button"></Button>
         <Button android:layout_height="wrap_content"
 
-            android:text="w" android:layout_width="65dp"
+            android:text="w" android:layout_width="75dp"
             android:id="@+id/w_button"></Button>
         <Button android:layout_height="wrap_content"
 
-            android:text="x" android:layout_width="65dp"
+            android:text="x" android:layout_width="75dp"
             android:id="@+id/x_button"></Button>
     </TableRow>
     <TableRow android:layout_below="@+id/TableRow04"
@@ -195,19 +187,19 @@
         android:layout_centerHorizontal="true">
         <Button android:layout_height="wrap_content"
 
-            android:text="y" android:layout_width="65dp"
+            android:text="y" android:layout_width="75dp"
             android:id="@+id/y_button"></Button>
         <Button android:layout_height="wrap_content"
 
-            android:text="z" android:layout_width="65dp"
+            android:text="z" android:layout_width="75dp"
             android:id="@+id/z_button"></Button>
 
     </TableRow>
 
     <TextView
         android:id="@+id/wrongletters"
-        android:layout_marginLeft="60dp"
-        android:textSize="10pt"
+        android:layout_centerHorizontal="true"
+        android:textSize="12pt"
         android:layout_below="@+id/TableRow05"
         android:text="A B C"
         android:textColor="#BD4959"
