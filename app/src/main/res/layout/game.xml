@@ -19,7 +19,7 @@
         <Button android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
             android:textSize="10pt"
-            android:text="HINT"
+            android:text="Hint"
             android:id="@+id/hint_button"
             android:layout_width="wrap_content"></Button>
 
@@ -64,146 +64,222 @@
     </LinearLayout>
 
 
-    <TableRow android:layout_below="@+id/dummy4"
+    <TableRow
         android:layout_height="wrap_content"
         android:id="@+id/TableRow01"
         android:layout_width="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dip">
+
+
         <Button android:layout_height="wrap_content"
             android:layout_below="@+id/mysteryword"
             android:layout_centerHorizontal="true"
             android:text="a"
             android:layout_width="65dp"
-            android:id="@+id/a_button"></Button>
+            android:id="@+id/a_button"
+            
+            ></Button>
+
+
         <Button android:layout_height="wrap_content"
             android:layout_below="@+id/mysteryword"
             android:layout_centerHorizontal="true"
             android:text="b" android:layout_width="65dp"
-            android:id="@+id/b_button"></Button>
+            android:id="@+id/b_button"
+            
+            ></Button>
+
         <Button android:layout_height="wrap_content"
             android:layout_below="@+id/mysteryword"
             android:layout_centerHorizontal="true"
             android:text="c" android:layout_width="65dp"
-            android:id="@+id/c_button"></Button>
+            android:id="@+id/c_button"
+            
+            ></Button>
+
         <Button android:layout_height="wrap_content"
             android:layout_below="@+id/mysteryword"
             android:layout_centerHorizontal="true"
             android:text="d" android:layout_width="65dp"
-            android:id="@+id/d_button"></Button>
+            android:id="@+id/d_button"
+            
+            ></Button>
+
         <Button android:layout_height="wrap_content"
             android:layout_below="@+id/mysteryword"
             android:layout_centerHorizontal="true"
             android:text="e" android:layout_width="65dp"
-            android:id="@+id/e_button"></Button>
-        <Button android:layout_height="wrap_content"
-            android:layout_below="@+id/mysteryword"
-            android:layout_centerHorizontal="true"
-            android:text="f" android:layout_width="65dp"
-            android:id="@+id/f_button"></Button>
+            android:id="@+id/e_button"
+            
+            ></Button>
+
+
     </TableRow>
     <TableRow android:layout_below="@+id/TableRow01"
         android:layout_height="wrap_content"
         android:id="@+id/TableRow02"
         android:layout_width="wrap_content"
         android:layout_centerHorizontal="true">
+
+        <Button android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="f" android:layout_width="65dp"
+            android:id="@+id/f_button"
+            
+            ></Button>
+
         <Button android:layout_height="wrap_content"
             android:text="g" android:layout_width="65dp"
-            android:id="@+id/g_button"></Button>
+            android:id="@+id/g_button"
+            
+            ></Button>
+
         <Button android:layout_height="wrap_content"
             android:layout_below="@+id/Button01"
             android:layout_centerHorizontal="true"
             android:text="h" android:layout_width="65dp"
-            android:id="@+id/h_button"></Button>
+            android:id="@+id/h_button"
+            
+            ></Button>
+
         <Button android:layout_height="wrap_content"
             android:text="i" android:layout_width="65dp"
-            android:id="@+id/i_button"></Button>
+            android:id="@+id/i_button"
+            
+            ></Button>
+
         <Button android:layout_height="wrap_content"
             android:text="j" android:layout_width="65dp"
-            android:id="@+id/j_button"></Button>
-        <Button android:layout_height="wrap_content"
-            android:text="k" android:layout_width="65dp"
-            android:id="@+id/k_button"></Button>
-        <Button android:layout_height="wrap_content"
-            android:text="l" android:layout_width="65dp"
-            android:id="@+id/l_button"></Button>
+            android:id="@+id/j_button"
+            
+            ></Button>
+
+
+
     </TableRow>
     <TableRow android:layout_below="@+id/TableRow02"
         android:layout_height="wrap_content"
         android:id="@+id/TableRow03"
         android:layout_width="wrap_content"
         android:layout_centerHorizontal="true">
-        <Button android:layout_height="wrap_content"
 
+        <Button android:layout_height="wrap_content"
+            android:text="k" android:layout_width="65dp"
+            android:id="@+id/k_button"
+
+            ></Button>
+
+
+        <Button android:layout_height="wrap_content"
+            android:text="l" android:layout_width="65dp"
+            android:id="@+id/l_button"
+            
+            ></Button>
+
+
+        <Button android:layout_height="wrap_content"
             android:text="m" android:layout_width="65dp"
-            android:id="@+id/m_button"></Button>
+            android:id="@+id/m_button"
+            
+            ></Button>
         <Button android:layout_height="wrap_content"
-
             android:text="n" android:layout_width="65dp"
-            android:id="@+id/n_button"></Button>
+            android:id="@+id/n_button"
+            
+            ></Button>
         <Button android:layout_height="wrap_content"
-
             android:text="o" android:layout_width="65dp"
-            android:id="@+id/o_button"></Button>
-        <Button android:layout_height="wrap_content"
+            android:id="@+id/o_button"
+            
+            ></Button>
 
-            android:text="p" android:layout_width="65dp"
-            android:id="@+id/p_button"></Button>
-        <Button android:layout_height="wrap_content"
 
-            android:text="q" android:layout_width="65dp"
-            android:id="@+id/q_button"></Button>
-        <Button android:layout_height="wrap_content"
-
-            android:text="r" android:layout_width="65dp"
-            android:id="@+id/r_button"></Button>
     </TableRow>
     <TableRow android:layout_below="@+id/TableRow03"
         android:layout_height="wrap_content"
         android:id="@+id/TableRow04"
         android:layout_width="wrap_content"
         android:layout_centerHorizontal="true">
-        <Button android:layout_height="wrap_content"
 
+        <Button android:layout_height="wrap_content"
+            android:text="p" android:layout_width="65dp"
+            android:id="@+id/p_button"
+
+            ></Button>
+        <Button android:layout_height="wrap_content"
+            android:text="q" android:layout_width="65dp"
+            android:id="@+id/q_button"
+
+            ></Button>
+
+        <Button android:layout_height="wrap_content"
+            android:text="r" android:layout_width="65dp"
+            android:id="@+id/r_button"
+            
+            ></Button>
+
+
+        <Button android:layout_height="wrap_content"
             android:text="s" android:layout_width="65dp"
-            android:id="@+id/s_button"></Button>
-        <Button android:layout_height="wrap_content"
+            android:id="@+id/s_button"
+            
+            ></Button>
 
+        <Button android:layout_height="wrap_content"
             android:text="t" android:layout_width="65dp"
-            android:id="@+id/t_button"></Button>
-        <Button android:layout_height="wrap_content"
+            android:id="@+id/t_button"
+            
+            ></Button>
 
-            android:text="u" android:layout_width="65dp"
-            android:id="@+id/u_button"></Button>
-        <Button android:layout_height="wrap_content"
 
-            android:text="v" android:layout_width="65dp"
-            android:id="@+id/v_button"></Button>
-        <Button android:layout_height="wrap_content"
-
-            android:text="w" android:layout_width="65dp"
-            android:id="@+id/w_button"></Button>
-        <Button android:layout_height="wrap_content"
-
-            android:text="x" android:layout_width="65dp"
-            android:id="@+id/x_button"></Button>
     </TableRow>
     <TableRow android:layout_below="@+id/TableRow04"
         android:layout_height="wrap_content"
         android:id="@+id/TableRow05"
         android:layout_width="wrap_content"
         android:layout_centerHorizontal="true">
-        <Button android:layout_height="wrap_content"
 
+        <Button android:layout_height="wrap_content"
+            android:text="u" android:layout_width="65dp"
+            android:id="@+id/u_button"
+
+            ></Button>
+        <Button android:layout_height="wrap_content"
+            android:text="v" android:layout_width="65dp"
+            android:id="@+id/v_button"
+
+            ></Button>
+        <Button android:layout_height="wrap_content"
+            android:text="w" android:layout_width="65dp"
+            android:id="@+id/w_button"
+
+            ></Button>
+
+        <Button android:layout_height="wrap_content"
+            android:text="x" android:layout_width="65dp"
+            android:id="@+id/x_button"
+            
+            ></Button>
+
+        <Button android:layout_height="wrap_content"
             android:text="y" android:layout_width="65dp"
-            android:id="@+id/y_button"></Button>
-        <Button android:layout_height="wrap_content"
-
-            android:text="z" android:layout_width="65dp"
-            android:id="@+id/z_button"></Button>
-
+            android:id="@+id/y_button"
+            ></Button>
     </TableRow>
 
+    <TableRow android:layout_below="@+id/TableRow04"
+        android:layout_height="wrap_content"
+        android:id="@+id/TableRow06"
+        android:layout_width="wrap_content"
+        android:layout_centerHorizontal="true">
+
+    <Button android:layout_height="wrap_content"
+        android:text="z" android:layout_width="65dp"
+        android:id="@+id/z_button"
+
+        ></Button>
+    </TableRow>
     <TextView
         android:id="@+id/wrongletters"
         android:layout_marginLeft="60dp"

@@ -3,43 +3,65 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/black"
     tools:context="aditi.hangman.MainActivity">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textMultiLine"
-        android:text="Welcome!\nClick new for a new game and choose a category.\nClick Continue to continue an existing game\nClick Exit to clear score count and re-start."
 
-        android:textStyle="italic"
-        android:textSize="9pt" />
 
     <Button
         android:id="@+id/newGame_button"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView"
+        android:text="Hangman"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="74dp"
-        android:text="New Game" />
+        android:layout_weight="1"
+        style="@style/button_text"
+        android:elevation="12dp"
+        android:background="@drawable/red_button"
+        />
+
 
     <Button
         android:id="@+id/continue_button"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/newGame_button"
+        android:layout_marginTop="39dp"
+        android:text="Continue Hangman"
+        android:layout_weight="1"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="74dp"
-        android:text="Continue" />
+        style="@style/button_text"
+        android:elevation="12dp"
+        android:background="@drawable/red_button"
+        android:layout_below="@+id/newGame_button" />
+
+    <Button
+
+        android:text="Vocabulary GAME"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/vocab_button"
+        android:layout_below="@+id/continue_button"
+        android:layout_marginTop="28dp"
+        android:layout_weight="1"
+        android:layout_centerHorizontal="true"
+        style="@style/button_text"
+        android:elevation="12dp"
+        android:background="@drawable/red_button"/>
+
 
     <Button
         android:id="@+id/exit_button"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/continue_button"
+        style="@style/button_text"
+        android:background="@drawable/red_button"
+        android:text="Exit"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="74dp"
-        android:text="Exit" />
+        android:layout_below="@+id/vocab_button"
+        android:layout_marginTop="30dp"
+        android:layout_weight="1"
+        android:elevation="12dp"
+
+        />
 
 </RelativeLayout>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+    <TextView
+        android:layout_marginTop="50dp"
+        android:layout_width="322dp"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:layout_marginLeft="35dp"
+        android:textSize="10pt"
+        android:id="@+id/questionText"
+        android:textColor="#000000"
+        android:typeface="serif"
+        android:textStyle="bold"
+        android:backgroundTint="#f6ecec"
+        android:layout_weight="0.33"></TextView>
+
+    <RadioGroup
+        android:paddingLeft = "70dp"
+        android:id="@+id/choices"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.24"
+        android:gravity="center">
+
+
+    <RadioButton
+        android:text="RadioButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/choiceA"
+        android:layout_weight="0.16"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+      />
+
+
+    <RadioButton
+        android:text="RadioButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/choiceB"
+        android:layout_weight="0.16"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+       />
+
+
+
+    <RadioButton
+        android:text="RadioButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/choiceC"
+        android:layout_weight="0.16"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+    />
+
+    </RadioGroup>
+</LinearLayout>
