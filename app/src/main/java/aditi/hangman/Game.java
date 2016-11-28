@@ -89,6 +89,8 @@ public class Game extends Activity implements View.OnClickListener {
     private static final String PREF_MYSTERYWORD = "mysterytword";
     private static final String PREF_WRONGLETTERS = "wrongletters";
     private static final String PREF_NUMWRONGGUESSES = "numWrongGuesses";
+    private static final String PREF_CLUE = "clue";
+    private static final String PREF_CATEGORY = "cat";
 
     private int score = 0;
     private int total = 0;
@@ -166,6 +168,8 @@ public class Game extends Activity implements View.OnClickListener {
                 wrongletters.getText().toString()).commit();
         getPreferences(MODE_PRIVATE).edit().putInt(PREF_NUMWRONGGUESSES,
                 numWrongGuesses).commit();
+        getPreferences(MODE_PRIVATE).edit().putString(PREF_CLUE,
+                clue.getText().toString()).commit();
     }
 
     /**
@@ -184,6 +188,7 @@ public class Game extends Activity implements View.OnClickListener {
             numWrongGuesses =
                     getPreferences(MODE_PRIVATE).getInt(
                             PREF_NUMWRONGGUESSES, 0);
+            clue.setText(getPreferences(MODE_PRIVATE).getString(PREF_CLUE,""));
 
             updateImg();
         } else {
@@ -348,6 +353,8 @@ public class Game extends Activity implements View.OnClickListener {
                 validateGuess('z');
                 break;
             case R.id.endgame1:
+                cat = getPreferences(MODE_PRIVATE).getInt(
+                        PREF_CATEGORY, 0);
                 getIntent().putExtra(KEY_CATEGORY, cat);
                 startGame(cat);
                 //openNewGameDialog();
@@ -660,6 +667,8 @@ public class Game extends Activity implements View.OnClickListener {
                 score).commit();
         getPreferences(MODE_PRIVATE).edit().putInt(PREF_total,
                 total).commit();
+        getPreferences(MODE_PRIVATE).edit().putInt(PREF_CATEGORY,
+                cat).commit();
 
         return dialog;
     }
