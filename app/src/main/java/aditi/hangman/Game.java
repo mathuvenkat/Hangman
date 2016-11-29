@@ -3,6 +3,7 @@ package aditi.hangman;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -27,7 +28,6 @@ import java.util.Random;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-import java.util.HashSet;
 
 
 /**
@@ -37,45 +37,30 @@ public class Game extends Activity implements View.OnClickListener {
 
     private static final String TAG = "Game";
 
-    /**
-     * The View of the mystery word that is to be guessed
-     */
-    private TextView mystword;
-    /**
-     * The View of the string of letters guessed incorrectly
-     */
-    private TextView wrongletters;
-
-    private TextView clue;
-
-    /**
-     * The View of the displayed Hangman image
-     */
-    private ImageView hangmanimg;
-
-    private ImageView resultImg;
-
-    /**
-     * The Dialog currently in the foreground during the game
-     */
-    private Dialog dialog;
-
-    /**
-     * The id of the Dialog currently in the foreground
-     */
-    private int currentDialogId;
-    private int numWrongGuesses;
-    private String mysteryWord;
-    private int cat = 0;
-
-    static final String KEY_CATEGORY =
-            "aditi.hangman.category";
-
     public static final int CATEGORY_ADJECTIVES = 0;
     public static final int CATEGORY_VERBS = 1;
     public static final int CATEGORY_COUNTRIES = 2;
 
-    protected static final int CATEGORY_CONTINUE = -1;
+    private TextView guessedLettersTextView;
+    private TextView wronglettersTextView;
+    private TextView clueTextView;
+    private ImageView hangmanimg;
+    private ImageView resultImg;
+
+
+    private Dialog dialog;
+    private int currentDialogId;
+
+    private String mysteryWord;
+    private int numWrongGuesses;
+    private int categorySelected = 0;
+
+    private boolean guessCompleted = false;
+
+    private int isContinue = 0;
+    //protected static final int CATEGORY_CONTINUE = -1;
+
+    SharedPreferences sharedPreferences;
 
     static final int DIALOG_WIN_ID = 10;
     static final int DIALOG_LOSE_ID = 11;
@@ -85,18 +70,23 @@ public class Game extends Activity implements View.OnClickListener {
      */
     private GoogleApiClient client;
 
-    private static final String PREF_MYSTWORD = "mystword";
-    private static final String PREF_MYSTERYWORD = "mysterytword";
-    private static final String PREF_WRONGLETTERS = "wrongletters";
-    private static final String PREF_NUMWRONGGUESSES = "numWrongGuesses";
-    private static final String PREF_CLUE = "clue";
-    private static final String PREF_CATEGORY = "cat";
+    static final String PREF_MYSTWORD = "aditi.hangman.guessedLettersTextView";
+    static final String PREF_MYSTERYWORD = "aditi.hangman.mysterytword";
+    static final String PREF_WRONGLETTERS = "aditi.hangman.wronglettersTextView";
+    static final String PREF_NUMWRONGGUESSES = "aditi.hangman.numWrongGuesses";
+    static final String PREF_CLUE = "aditi.hangman.clueTextView";
+    static final String PREF_CATEGORY = "aditi.hangman.category";
+    static final String PREF_ENABLE_CONTINUE = "aditi.hangman.isContinueEnabled";
+
+    static final String KEY_CATEGORY_INTENT =
+            "aditi.hangman.category";
+    static final String KEY_CONTINUE_INTENT = "aditi.hangman.continue";
 
     private int score = 0;
     private int total = 0;
 
-    private static final String PREF_score = "score";
-    private static final String PREF_total = "total";
+    static final String PREF_score = "score";
+    static final String PREF_total = "total";
 
     Random gen = new Random();
 
@@ -111,7 +101,8 @@ public class Game extends Activity implements View.OnClickListener {
      */
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        //Log.d(TAG, "oncreate");
+        sharedPreferences = getSharedPreferences("Game", Context.MODE_PRIVATE);
+        isContinue = getIntent().getIntExtra(KEY_CONTINUE_INTENT, 0);
         initProperties();
 
         score = getPreferences(MODE_PRIVATE).getInt(
@@ -133,8 +124,7 @@ public class Game extends Activity implements View.OnClickListener {
         initWrongGuesses();
         // set OnClick Listeners for each button in the view
         setClickListeners();
-
-        //Log.d(TAG, "invoking load game if saved");
+        
         loadGameIfSaved();
 
         // ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -144,11 +134,7 @@ public class Game extends Activity implements View.OnClickListener {
 
     @Override
     protected void onResume() {
-
-
         super.onResume();
-        //Log.d(TAG, "game onResume");
-
     }
 
     @Override
@@ -156,48 +142,73 @@ public class Game extends Activity implements View.OnClickListener {
 
         //Log.d(TAG, "onPause");
         super.onPause();
-        //Log.d(TAG, "stopping music");
         Music.stop(this);
 
         // Save the current mystery word
         getPreferences(MODE_PRIVATE).edit().putString(PREF_MYSTERYWORD,
                 mysteryWord).commit();
         getPreferences(MODE_PRIVATE).edit().putString(PREF_MYSTWORD,
-                mystword.getText().toString()).commit();
+                guessedLettersTextView.getText().toString()).commit();
         getPreferences(MODE_PRIVATE).edit().putString(PREF_WRONGLETTERS,
-                wrongletters.getText().toString()).commit();
+                wronglettersTextView.getText().toString()).commit();
         getPreferences(MODE_PRIVATE).edit().putInt(PREF_NUMWRONGGUESSES,
                 numWrongGuesses).commit();
         getPreferences(MODE_PRIVATE).edit().putString(PREF_CLUE,
-                clue.getText().toString()).commit();
+                clueTextView.getText().toString()).commit();
+
+
+        if (!guessCompleted) {
+            sharedPreferences.edit().putBoolean(PREF_ENABLE_CONTINUE, true).commit();
+        }
+
     }
 
     /**
      * Loads the old Game if game was saved
      */
     private void loadGameIfSaved() {
-        if (cat == -1) {
+        if (isContinue == 1) {
             mysteryWord = getPreferences(MODE_PRIVATE).getString(
                     PREF_MYSTERYWORD, getWord(CATEGORY_ADJECTIVES));
 
-            mystword.setText(getPreferences(MODE_PRIVATE).getString(
+            guessedLettersTextView.setText(getPreferences(MODE_PRIVATE).getString(
                     PREF_MYSTWORD, underscore()));
 
-            wrongletters.setText(getPreferences(MODE_PRIVATE).getString(
-                    PREF_WRONGLETTERS, ""));
+            String wrongLetters = getPreferences(MODE_PRIVATE).getString(
+                    PREF_WRONGLETTERS, "");
+            wronglettersTextView.setText(wrongLetters);
             numWrongGuesses =
                     getPreferences(MODE_PRIVATE).getInt(
                             PREF_NUMWRONGGUESSES, 0);
-            clue.setText(getPreferences(MODE_PRIVATE).getString(PREF_CLUE,""));
+            String clue = getPreferences(MODE_PRIVATE).getString(PREF_CLUE, "");
+            clueTextView.setText(clue);
+            if (clue.length() > 0) {
+                Button hint = (Button) this.findViewById(R.id.hint_button);
+                hint.setEnabled(false);
+            }
+
+            Button tmp;
+            String alreadyGuessed = (String) guessedLettersTextView.getText();
+            alreadyGuessed = alreadyGuessed.replaceAll("[^a-zA-Z]", "");
+
+            for (int i = 0; i < alreadyGuessed.length(); i++) {
+                int buttonId = getResources().getIdentifier(
+                        Character.toString(alreadyGuessed.charAt(i)) + "_button", "id", getPackageName());
+                tmp = (Button) this.findViewById(buttonId);
+                tmp.setEnabled(false);
+            }
+
+            for (int i = 0; i < wrongLetters.length(); i++) {
+                int buttonId = getResources().getIdentifier(
+                        Character.toString(wrongLetters.charAt(i)) + "_button", "id", getPackageName());
+                tmp = (Button) this.findViewById(buttonId);
+                tmp.setEnabled(false);
+            }
 
             updateImg();
         } else {
-            mystword.setText(underscore());
+            guessedLettersTextView.setText(underscore());
         }
-
-
-        // If the activity is restarted, do a continue next time
-        getIntent().putExtra(KEY_CATEGORY, CATEGORY_CONTINUE);
     }
 
     /**
@@ -206,7 +217,7 @@ public class Game extends Activity implements View.OnClickListener {
      */
     private void initWrongGuesses() {
         numWrongGuesses = 0;
-        wrongletters.setText("");
+        wronglettersTextView.setText("");
     }
 
 
@@ -353,14 +364,15 @@ public class Game extends Activity implements View.OnClickListener {
                 validateGuess('z');
                 break;
             case R.id.endgame1:
-                cat = getPreferences(MODE_PRIVATE).getInt(
+                categorySelected = getPreferences(MODE_PRIVATE).getInt(
                         PREF_CATEGORY, 0);
-                getIntent().putExtra(KEY_CATEGORY, cat);
-                startGame(cat);
-                //openNewGameDialog();
+                getIntent().putExtra(KEY_CATEGORY_INTENT, categorySelected);
+                sharedPreferences.edit().putBoolean(PREF_ENABLE_CONTINUE, false).commit();
+                startGame(categorySelected);
                 break;
             case R.id.endgame2:
                 finish();
+                sharedPreferences.edit().putBoolean(PREF_ENABLE_CONTINUE, false).commit();
                 break;
             case R.id.hint_button:
                 useHint();
@@ -387,9 +399,9 @@ public class Game extends Activity implements View.OnClickListener {
      * Start a new game with the given category
      */
     private void startGame(int i) {
-        //Log.d(TAG, "game clicked on " + i);
+        ////Log.d(TAG, "game clicked on " + i);
         Intent intent = new Intent(Game.this, Game.class);
-        intent.putExtra(Game.KEY_CATEGORY, i);
+        intent.putExtra(Game.KEY_CATEGORY_INTENT, i);
         startActivity(intent);
         finish();
     }
@@ -399,7 +411,7 @@ public class Game extends Activity implements View.OnClickListener {
             Music.play(this, R.raw.wrong);
             // Check if letter already exists
             String wrongletters_t =
-                    wrongletters.getText().toString();
+                    wronglettersTextView.getText().toString();
             if (wrongletters_t.indexOf(guess) == -1) {
                 // Letter not found in word
                 if (numWrongGuesses < 10) {
@@ -425,20 +437,20 @@ public class Game extends Activity implements View.OnClickListener {
      * checks to see if player has won the game
      */
     private void checkWin() {
-        if (mystword.getText().toString().indexOf("_ ") == -1) {
+        if (guessedLettersTextView.getText().toString().indexOf("_ ") == -1) {
             showDialog(DIALOG_WIN_ID);
         }
     }
 
     private void updateMystWord(char ch) {
         char[] updatedWord =
-                mystword.getText().toString().toCharArray();
+                guessedLettersTextView.getText().toString().toCharArray();
         for (int i = 0; i < mysteryWord.length(); i++) {
             if (ch == mysteryWord.charAt(i)) {
                 updatedWord[i * 2] = mysteryWord.charAt(i);
             }
         }
-        mystword.setText(new String(updatedWord));
+        guessedLettersTextView.setText(new String(updatedWord));
     }
 
     /**
@@ -454,7 +466,7 @@ public class Game extends Activity implements View.OnClickListener {
      * updates the View of wrong guesses with the recent wrong guess
      */
     private void updateWrongGuesses(char ch) {
-        wrongletters.setText(wrongletters.getText() +
+        wronglettersTextView.setText(wronglettersTextView.getText() +
                 Character.toString(ch));
     }
 
@@ -463,18 +475,13 @@ public class Game extends Activity implements View.OnClickListener {
      * Sets the mystery word based on the current category
      */
     private void setWordByCategory() {
-        cat = getIntent().getIntExtra(KEY_CATEGORY,
+        categorySelected = getIntent().getIntExtra(KEY_CATEGORY_INTENT,
                 CATEGORY_ADJECTIVES);
-
-        if (cat == CATEGORY_CONTINUE) {
-            SharedPreferences res = getPreferences(MODE_PRIVATE);
-            Map finalt = res.getAll();
-
+        if (isContinue == 1) {
             mysteryWord = getPreferences(MODE_PRIVATE).getString(PREF_MYSTERYWORD, getWord(CATEGORY_ADJECTIVES));
             return;
         }
-
-        mysteryWord = getWord(cat).toLowerCase();
+        mysteryWord = getWord(categorySelected).toLowerCase();
     }
 
     /**
@@ -482,7 +489,7 @@ public class Game extends Activity implements View.OnClickListener {
      * and spaces
      */
     private void initMystWord() {
-        mystword.setText(underscore());
+        guessedLettersTextView.setText(underscore());
     }
 
     /**
@@ -550,10 +557,10 @@ public class Game extends Activity implements View.OnClickListener {
      * binds each manipulated view to a private variable
      */
     private void bindViews() {
-        mystword = (TextView) this.findViewById(R.id.mysteryword);
-        wrongletters = (TextView)
+        guessedLettersTextView = (TextView) this.findViewById(R.id.mysteryword);
+        wronglettersTextView = (TextView)
                 this.findViewById(R.id.wrongletters);
-        clue = (TextView) this.findViewById(R.id.clue);
+        clueTextView = (TextView) this.findViewById(R.id.clue);
         hangmanimg = (ImageView) this.findViewById(R.id.hangman_img);
         resultImg = (ImageView) this.findViewById(R.id.congrats);
     }
@@ -588,7 +595,7 @@ public class Game extends Activity implements View.OnClickListener {
     private void useHint() {
 
         Properties temp = new Properties();
-        switch (cat) {
+        switch (categorySelected) {
             case 0:
                 temp = prop_0;
                 break;
@@ -600,7 +607,7 @@ public class Game extends Activity implements View.OnClickListener {
                 break;
 
         }
-        clue.setText((String) temp.get(mysteryWord));
+        clueTextView.setText((String) temp.get(mysteryWord));
     }
 
     @Override
@@ -668,7 +675,9 @@ public class Game extends Activity implements View.OnClickListener {
         getPreferences(MODE_PRIVATE).edit().putInt(PREF_total,
                 total).commit();
         getPreferences(MODE_PRIVATE).edit().putInt(PREF_CATEGORY,
-                cat).commit();
+                categorySelected).commit();
+        sharedPreferences.edit().putBoolean(PREF_ENABLE_CONTINUE, false).commit();
+        guessCompleted = true;
 
         return dialog;
     }
@@ -697,9 +706,9 @@ public class Game extends Activity implements View.OnClickListener {
     @Override
     public void onStop() {
 
-        //Log.d(TAG, "onStop");
+        ////Log.d(TAG, "onStop");
         super.onPause();
-        //Log.d(TAG, "stopping music");
+        ////Log.d(TAG, "stopping music");
         Music.stop(this);
 
         super.onStop();
