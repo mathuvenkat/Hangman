@@ -124,7 +124,7 @@ public class Game extends Activity implements View.OnClickListener {
         initWrongGuesses();
         // set OnClick Listeners for each button in the view
         setClickListeners();
-        
+
         loadGameIfSaved();
 
         // ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -634,7 +634,7 @@ public class Game extends Activity implements View.OnClickListener {
                         dialog.findViewById(R.id.endgame1);
                 endgame2 = (Button)
                         dialog.findViewById(R.id.endgame2);
-                endmessage.setText("You Win! Scored" + score + " out of " + total);
+                endmessage.setText("Correct! Scored " + score + " out of " + total);
                 endgame1.setText("Play Again");
                 endgame2.setText("Back To Main");
                 endgame1.setOnClickListener(this);
